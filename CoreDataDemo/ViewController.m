@@ -15,14 +15,16 @@
 @property (nonatomic, strong) NSFetchRequest *request;
 @property (nonatomic, strong) NSFetchedResultsController *frc;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) UIAlertController *userInput;
+
 @end
 
 @implementation ViewController
 
-- (instancetype)init{
+- (instancetype)init {
     self = [super init];
     
-    if(self){
+    if(self) {
         self.coreDataStack = [CoreDataStack stack];
     }
     
@@ -31,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //Person *person = (id)[NSEntityDescription entityForName:@"Person" inManagedObjectContext:_coreDataStack.coreDataContext];
+
     [_coreDataStack save];
     [self createPerson];
     
@@ -48,14 +50,41 @@
     [self setupNavBar];
     _frc.delegate = self;
     [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"identificator"];
-    
-    //    NSLog(@"before");
-    //    Person *lastPerson = [self findPerson].lastObject;
-    //    NSLog(@"after");
-    //    [self removePerson:lastPerson];
-    //    [self findPerson];
-    
     // asyncRequest.fetchRequest = request;
+    [self setupAlertController];
+}
+
+- (void)setupAlertController {
+    self.userInput = [UIAlertController alertControllerWithTitle: @"New Person"
+                                                         message: @"Input full name and age"
+                                                  preferredStyle:UIAlertControllerStyleAlert];
+    [self.userInput addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"First Name";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [self.userInput addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Last Name";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [self.userInput addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Age";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [self.userInput addAction:[UIAlertAction actionWithTitle:@"Add" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray *textfields = self.userInput.textFields;
+        UITextField *firstNameField = textfields[0];
+        UITextField *lastNameField = textfields[1];
+        UITextField *ageField = textfields[2];
+        [self createPersonWithFirstName:firstNameField.text
+                               LastName:lastNameField.text
+                                 AndAge:(uint16_t)ageField.text.intValue];
+    }]];
 }
 
 - (void)setupNavBar {
@@ -87,26 +116,32 @@
     return _request;
 }
 
-//- (void
-
-- (void) removePerson:(Person*)person{
+- (void)removePerson:(Person*)person {
     [_coreDataStack.coreDataContext deleteObject:person];
     [_coreDataStack save];
 }
 
-- (void)createPerson{
+- (void)createPerson {
     [_coreDataStack.coreDataContext performBlock:^{
         Person *person = (id)[NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self->_coreDataStack.coreDataContext];
         person.firstName = @"New";
         person.lastName = @"Newanov";
         person.age = 80;
         [_coreDataStack save];
-        
     }];
 }
 
-- (NSFetchRequest*)fetchRequest{
-    
+- (void)createPersonWithFirstName: (NSString *)firstName LastName: (NSString *)lastName AndAge: (uint16_t)age{
+    [_coreDataStack.coreDataContext performBlock:^{
+        Person *person = (id)[NSEntityDescription insertNewObjectForEntityForName:@"Person" inManagedObjectContext:self->_coreDataStack.coreDataContext];
+        person.firstName = firstName;
+        person.lastName = lastName;
+        person.age = age;
+        [_coreDataStack save];
+    }];
+}
+
+- (NSFetchRequest*)fetchRequest {
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"Person"];
     request.predicate = [NSPredicate predicateWithFormat:@"age > 10"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"age" ascending:YES]];
@@ -114,7 +149,7 @@
     return request;
 }
 
-- (NSArray<Person*>*)findPerson{
+- (NSArray<Person*>*)findPerson {
     NSError *err = nil;
     NSArray<Person *>*persons = [_coreDataStack.coreDataContext executeFetchRequest:[self fetchRequest] error:&err];
     NSLog(@"%@", err.localizedDescription);
@@ -123,7 +158,7 @@
     return persons;
 }
 
-- (NSFetchedResultsController *)frc{
+- (NSFetchedResultsController *)frc {
     if (_frc) return _frc;
     
     NSFetchRequest *request = [self fetchRequest];
@@ -144,8 +179,8 @@
     
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[_frc sections] objectAtIndex:section] numberOfObjects];
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[_frc sections] objectAtIndex:section].numberOfObjects;
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
@@ -196,34 +231,30 @@
     }
 }
 
-- (void) editTableView{
+- (void)editTableView {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
-    
 }
 
 -(UITableViewCellEditingStyle) tableView:(UITableView *)tableView
-           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath{
+           editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return UITableViewCellEditingStyleInsert;
-    } else{
-        return UITableViewCellEditingStyleDelete;
-        
     }
-    
+    else {
+        return UITableViewCellEditingStyleDelete;
+    }
 }
 
 
--(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath{
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete){
         Person *perosn = _frc.fetchedObjects[indexPath.row];
         [self removePerson:perosn];
     } else if (editingStyle==UITableViewCellEditingStyleInsert){
         //Use non-modal alert dialog to add a person with specified data
-        [self createPerson];
+        [self presentViewController:self.userInput animated:YES completion:nil];
     }
     [self.tableView reloadData];
-    
-    
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
