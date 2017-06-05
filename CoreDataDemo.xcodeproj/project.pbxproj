@@ -10,10 +10,12 @@
 		043B688C1EDDD60D00E77866 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B688B1EDDD60D00E77866 /* main.m */; };
 		043B688F1EDDD60D00E77866 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B688E1EDDD60D00E77866 /* AppDelegate.m */; };
 		043B68921EDDD60D00E77866 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B68911EDDD60D00E77866 /* ViewController.m */; };
-		043B68951EDDD60D00E77866 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043B68931EDDD60D00E77866 /* Main.storyboard */; };
 		043B68971EDDD60D00E77866 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043B68961EDDD60D00E77866 /* Assets.xcassets */; };
-		043B689A1EDDD60D00E77866 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043B68981EDDD60D00E77866 /* LaunchScreen.storyboard */; };
 		043B68A51EDDD60D00E77866 /* CoreDataDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B68A41EDDD60D00E77866 /* CoreDataDemoTests.m */; };
+		043B68B11EDDD69400E77866 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 043B68AF1EDDD69400E77866 /* Model.xcdatamodeld */; };
+		043B68D91EDDE50700E77866 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B68D81EDDE50700E77866 /* Person.m */; };
+		043B68DC1EDDE53C00E77866 /* Dog.m in Sources */ = {isa = PBXBuildFile; fileRef = 043B68DB1EDDE53C00E77866 /* Dog.m */; };
+		046B2BF81EDDEB39007ACB75 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 046B2BF71EDDEB39007ACB75 /* CoreDataStack.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,13 +35,18 @@
 		043B688E1EDDD60D00E77866 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		043B68901EDDD60D00E77866 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		043B68911EDDD60D00E77866 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		043B68941EDDD60D00E77866 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		043B68961EDDD60D00E77866 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		043B68991EDDD60D00E77866 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		043B689B1EDDD60D00E77866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		043B68A01EDDD60D00E77866 /* CoreDataDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		043B68A41EDDD60D00E77866 /* CoreDataDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataDemoTests.m; sourceTree = "<group>"; };
 		043B68A61EDDD60D00E77866 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043B68B01EDDD69400E77866 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		043B68D71EDDE50700E77866 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		043B68D81EDDE50700E77866 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		043B68DA1EDDE53C00E77866 /* Dog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dog.h; sourceTree = "<group>"; };
+		043B68DB1EDDE53C00E77866 /* Dog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dog.m; sourceTree = "<group>"; };
+		046B2BF61EDDEB39007ACB75 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
+		046B2BF71EDDEB39007ACB75 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +70,7 @@
 		043B687E1EDDD60D00E77866 = {
 			isa = PBXGroup;
 			children = (
+				043B68BE1EDDDDDC00E77866 /* CoreData Model */,
 				043B68891EDDD60D00E77866 /* CoreDataDemo */,
 				043B68A31EDDD60D00E77866 /* CoreDataDemoTests */,
 				043B68881EDDD60D00E77866 /* Products */,
@@ -85,11 +93,10 @@
 				043B688E1EDDD60D00E77866 /* AppDelegate.m */,
 				043B68901EDDD60D00E77866 /* ViewController.h */,
 				043B68911EDDD60D00E77866 /* ViewController.m */,
-				043B68931EDDD60D00E77866 /* Main.storyboard */,
 				043B68961EDDD60D00E77866 /* Assets.xcassets */,
-				043B68981EDDD60D00E77866 /* LaunchScreen.storyboard */,
 				043B689B1EDDD60D00E77866 /* Info.plist */,
 				043B688A1EDDD60D00E77866 /* Supporting Files */,
+				043B68AF1EDDD69400E77866 /* Model.xcdatamodeld */,
 			);
 			path = CoreDataDemo;
 			sourceTree = "<group>";
@@ -109,6 +116,19 @@
 				043B68A61EDDD60D00E77866 /* Info.plist */,
 			);
 			path = CoreDataDemoTests;
+			sourceTree = "<group>";
+		};
+		043B68BE1EDDDDDC00E77866 /* CoreData Model */ = {
+			isa = PBXGroup;
+			children = (
+				043B68D71EDDE50700E77866 /* Person.h */,
+				043B68D81EDDE50700E77866 /* Person.m */,
+				043B68DA1EDDE53C00E77866 /* Dog.h */,
+				043B68DB1EDDE53C00E77866 /* Dog.m */,
+				046B2BF61EDDEB39007ACB75 /* CoreDataStack.h */,
+				046B2BF71EDDEB39007ACB75 /* CoreDataStack.m */,
+			);
+			name = "CoreData Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -193,9 +213,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				043B689A1EDDD60D00E77866 /* LaunchScreen.storyboard in Resources */,
 				043B68971EDDD60D00E77866 /* Assets.xcassets in Resources */,
-				043B68951EDDD60D00E77866 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,9 +231,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043B68DC1EDDE53C00E77866 /* Dog.m in Sources */,
 				043B68921EDDD60D00E77866 /* ViewController.m in Sources */,
+				046B2BF81EDDEB39007ACB75 /* CoreDataStack.m in Sources */,
 				043B688F1EDDD60D00E77866 /* AppDelegate.m in Sources */,
+				043B68D91EDDE50700E77866 /* Person.m in Sources */,
 				043B688C1EDDD60D00E77866 /* main.m in Sources */,
+				043B68B11EDDD69400E77866 /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,25 +258,6 @@
 			targetProxy = 043B68A11EDDD60D00E77866 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		043B68931EDDD60D00E77866 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				043B68941EDDD60D00E77866 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		043B68981EDDD60D00E77866 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				043B68991EDDD60D00E77866 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		043B68A71EDDD60D00E77866 /* Debug */ = {
@@ -414,6 +417,7 @@
 				043B68AB1EDDD60D00E77866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		043B68AC1EDDD60D00E77866 /* Build configuration list for PBXNativeTarget "CoreDataDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -422,8 +426,22 @@
 				043B68AE1EDDD60D00E77866 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		043B68AF1EDDD69400E77866 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				043B68B01EDDD69400E77866 /* Model.xcdatamodel */,
+			);
+			currentVersion = 043B68B01EDDD69400E77866 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 043B687F1EDDD60D00E77866 /* Project object */;
 }
